@@ -1,0 +1,3 @@
+C:/Users/YakirLaptop/CLionProjects/Matala2/cmake-build-debug/CMakeFiles/Matala_2.dir
+C:/Users/YakirLaptop/CLionProjects/Matala2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/YakirLaptop/CLionProjects/Matala2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
