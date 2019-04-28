@@ -18,7 +18,6 @@ void Editor::loop() {
     string command;
     cin >> command;
     while (command != "Q") {
-        std::cout << command << std::endl;
         if (command == "p") {
             cout << pAction() << endl;
         } else if (command == "n") {
