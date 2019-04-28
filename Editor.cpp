@@ -16,7 +16,7 @@ void Editor::loop() {
 //    string line;
 //    while (std::getline(command, line)) {
     string command;
-    cin >> command;
+    getline(cin,command);
     while (command != "Q") {
         if (command == "p") {
             cout << pAction() << endl;
@@ -46,6 +46,7 @@ void Editor::loop() {
             soldnewAction(s1, s2);
 
         }
+        getline(cin,command);
 
     }
 }
