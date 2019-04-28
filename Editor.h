@@ -13,6 +13,7 @@ class Editor {
 private:
     Document doc;
 public:
+    Editor() : doc(){}
     Editor(string s) : doc(s){}
     void loop();
     string pAction(){ return doc.pAction();}
