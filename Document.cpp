@@ -1,78 +1,89 @@
 //
-// Created by YakirLaptop on 27/04/2019.
+/* Yakir Arie 205387491 */
+/* Ofek Darhi 207975772 */
 //
 
 #include "Document.h"
 
-void Document::readfile() {
-    ifstream in(filename+".txt");
-    string str;
-    while (getline(in, str))
-    {
-        if(str.size() > 0)
-            rows.push_back(str);
-    }
+
+string Document::pAction(int ind) {
+    if (ind>=0&&ind<rows.size())
+        return rows.at(ind);
+    return "";
 
 }
 
-string Document::pAction() {
-    string ans = rows[currentLine];
-    currentLine++;
-    return ans;
-
-}
-
-string Document::nAction() {
-    string ans = to_string(currentLine)+"\t"+rows[currentLine];
-    currentLine++;
-    return ans;
+string Document::nAction(int ind) {
+  return to_string(ind+1)+"\t"+pAction(ind);
 }
 
 string Document::percentP_Action() {
     string ans;
     for(auto i: rows)
-        ans.append(i+"\n");
+        ans+=i+"\n";
     return ans;
 }
 
-void Document::numberAction(int i) {
-    currentLine = i;
-}
 
-void Document::aAction(string text) {
-    rows[currentLine]+= text;
-}
 
-void Document::iAction(string text) {
-    rows[currentLine-1]+= text;
-}
-
-void Document::cAction(string text) {
-    rows[currentLine] = text;
-}
-
-void Document::dAction() {
-    rows.erase(rows.begin()+currentLine-1);
-}
-
-string Document::textAction(string text) {
-    vector<string>::iterator it;
-    it = find(rows.begin()+currentLine, rows.end(),text);
-    if (it != rows.end()){
-        int index = std::distance(rows.begin(), it);
-        return to_string(index);
+int Document::aiAction(int ind, string text) {
+    if(ind>=0&&ind<rows.size()){
+        rows.insert(rows.begin()+ind,text);
+        ind++;
+        if(ind<=rows.size())
+            return ind;
+        else
+            return rows.size();
     }
-    else
-        return "-1";
+    rows.push_back(text);
+    return rows.size();
 }
 
-void Document::soldnewAction(string Old, string New) {
-    int index =  stoi(textAction(Old));
-    if (index!=-1){// old text exists
-        rows[index] = New;
+
+void Document::cAction(int ind,string text) {
+    if (ind>=0&&ind<rows.size())
+        rows[ind] = text;
+}
+
+int Document::dAction(int ind) {
+    if (ind>=0&&ind<rows.size()){
+        rows.erase(rows.begin()+ind);
+        ind++;
+        if(ind<=rows.size())
+            return ind;
+        else
+            return rows.size();
+    }
+    return -1;
+}
+
+string Document::textAction(int ind, string text) {
+    if (ind>=0&&ind<rows.size()) {
+        for (int i = ind; i < rows.size(); i++)
+            if (rows[i].find(text) != string::npos)
+                return rows[i];
+        for (int i = 0; i < ind; i++)
+            if (rows[i].find(text) != string::npos)
+                return rows[i];
+    }
+    return "-1";
+}
+
+void Document::soldnewAction(int ind,string Old, string New) {
+    if (ind>=0&&ind<rows.size()) {
+        for (int i = ind; i < rows.size(); i++)
+            if (rows[i].find(Old) != string::npos)
+                rows[i].replace(rows[i].begin() + rows[i].find(Old), rows[i].begin() + rows[i].find(Old) + Old.length(), New);
+        for (int i = 0; i < ind; i++)
+            if (rows[i].find(Old) != string::npos)
+                rows[i].replace(rows[i].begin() + rows[i].find(Old), rows[i].begin() + rows[i].find(Old) + Old.length(), New);
     }
 
 }
+
+
+
+
 
 
 

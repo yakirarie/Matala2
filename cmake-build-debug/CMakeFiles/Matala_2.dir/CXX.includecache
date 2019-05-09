@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/YakirLaptop/CLionProjects/Matala2/Document.cpp
+Document.h
+C:/Users/YakirLaptop/CLionProjects/Matala2/Document.h
+
 C:/Users/YakirLaptop/CLionProjects/Matala2/Document.h
 iostream
 -
@@ -19,14 +23,4 @@ streambuf
 -
 algorithm
 -
-
-C:/Users/YakirLaptop/CLionProjects/Matala2/Editor.cpp
-sstream
--
-Editor.h
-C:/Users/YakirLaptop/CLionProjects/Matala2/Editor.h
-
-C:/Users/YakirLaptop/CLionProjects/Matala2/Editor.h
-Document.h
-C:/Users/YakirLaptop/CLionProjects/Matala2/Document.h
 

@@ -1,6 +1,6 @@
 //
-// Created by YakirLaptop on 27/04/2019.
-//
+/* Yakir Arie 205387491 */
+/* Ofek Darhi 207975772 */
 
 #ifndef MATALA_2_EDITOR_H
 #define MATALA_2_EDITOR_H
@@ -12,20 +12,19 @@ class Editor {
 
 private:
     Document doc;
+    int currentLine;
 public:
     Editor() : doc(){}
-    Editor(string s) : doc(s){}
     void loop();
-    string pAction(){ return doc.pAction();}
-    string nAction(){ return doc.nAction();}
+    string pAction(int i){ return doc.pAction(i);}
+    string nAction(int i){ return doc.nAction(i);}
     string percentP_Action(){ return doc.percentP_Action();}
-    void numberAction(int i){ doc.numberAction(i);}
-    void aAction(string s){ doc.aAction(s);}
-    void iAction(string s){ doc.iAction(s);}
-    void cAction(string s){ doc.cAction(s);}
-    void dAction(){ doc.dAction();}
-    string textAction(string s){ return doc.textAction(s);}
-    void soldnewAction(string s1, string s2){ doc.soldnewAction(s1,s2);}
+    void numberAction(int i);
+    int aiAction(int i,string s){ return doc.aiAction(i,s);}
+    void cAction(int i,string s){ doc.cAction(i,s);}
+    int dAction(int i){ return doc.dAction(i);}
+    string textAction(int i,string s){ return doc.textAction(i,s);}
+    void soldnewAction(int i,string s1, string s2){ doc.soldnewAction(i,s1,s2);}
 
 
 

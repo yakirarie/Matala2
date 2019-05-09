@@ -3,7 +3,7 @@
 #include "Editor.h"
 
 int main() {
-    Editor ed("C:/Users/YakirLaptop/CLionProjects/Matala2/input");
+    Editor ed;
     ed.loop();
 
     return 0;

@@ -1,5 +1,6 @@
 //
-// Created by YakirLaptop on 27/04/2019.
+/* Yakir Arie 205387491 */
+/* Ofek Darhi 207975772 */
 //
 
 #ifndef MATALA_2_DOCUMENT_H
@@ -18,24 +19,21 @@ class Document {
 
 private:
     vector<string> rows;
-    string filename;
+
 public:
-    Document() : filename("") {};
-    Document(string s) : filename(s) { readfile();};
-    void readfile();
-    string pAction();
-    string nAction();
+    Document() {};
+    string pAction(int);
+    string nAction(int);
     string percentP_Action();
-    void numberAction(int);
-    void aAction(string);
-    void iAction(string);
-    void cAction(string);
-    void dAction();
-    string textAction(string);
-    void soldnewAction(string,string);
+    int aiAction(int,string);
+    void cAction(int,string);
+    int dAction(int);
+    string textAction(int,string);
+    void soldnewAction(int,string,string);
+    int getSize(){return rows.size();}
+
 };
 
-static int currentLine = 0;
 
 
 #endif //MATALA_2_DOCUMENT_H

@@ -1,6 +1,6 @@
 //
-// Created by YakirLaptop on 27/04/2019.
-//
+/* Yakir Arie 205387491 */
+/* Ofek Darhi 207975772 */
 
 #include <sstream>
 #include "Editor.h"
@@ -16,38 +16,63 @@ void Editor::loop() {
 //    string line;
 //    while (std::getline(command, line)) {
     string command;
+    currentLine = 0;
     getline(cin,command);
     while (command != "Q") {
         if (command == "p") {
-            cout << pAction() << endl;
+            cout << pAction(currentLine-1) << endl;
         } else if (command == "n") {
-            cout << nAction() << endl;
+            cout << nAction(currentLine-1) << endl;
         } else if (command == "%p") {
-            cout << percentP_Action() << endl;
+            cout<<percentP_Action();
         } else if (is_number(command)) {
             numberAction(stoi(command));
-        } else if (command.substr(0, command.find(" ")) == "a") {
-            aAction(command.substr(command.find(" ")));
-        } else if (command.substr(0, command.find(" ")) == "i") {
-            iAction(command.substr(command.find(" ")));
-        } else if (command.substr(0, command.find(" ")) == "c") {
-            cAction(command.substr(command.find(" ") + 1));
+        } else if (command == "a") {
+            string buffer;
+            getline(cin, buffer);
+            while (buffer!="\.") {
+                currentLine = aiAction(currentLine, buffer);
+                getline(cin, buffer);
+            }
+        } else if (command == "i") {
+            string buffer;
+            getline(cin, buffer);
+            while (buffer!="\.") {
+                currentLine = aiAction(currentLine - 1, buffer);
+                currentLine += 1;
+                getline(cin, buffer);
+            }
+        } else if (command == "c") {
+            string buffer;
+            getline(cin, buffer);
+            while (buffer!="\.") {
+                cAction(currentLine - 1, buffer);
+                getline(cin, buffer);
+            }
         } else if (command == "d") {
-            dAction();
-        } else if (command.substr(0, command.find("/")) == "") {
-            string ans = textAction(command.substr(command.find("/") + 1));
-            if (ans != "-1")
-                cout << textAction(command.substr(command.find("/") + 1)) << endl;
+            int deletedLine = dAction(currentLine - 1);
+            if (deletedLine!=-1)
+                currentLine = deletedLine;
+        } else if (command[0] == '/') {
+            cout << textAction(currentLine-1,command.substr(1)) << endl;
         } else if (command.substr(0, command.find("/")) == "s") {
             command.erase(0, command.find("/") + 1);
             string s1 = command.substr(0, command.find("/"));
             command.erase(0, command.find("/") + 1);
             string s2 = command.substr(0, command.find("/"));
-            soldnewAction(s1, s2);
+            soldnewAction(currentLine-1,s1, s2);
 
         }
         getline(cin,command);
 
+    }
+
+}
+
+void Editor::numberAction(int i) {
+    if (i>0&&i<=doc.getSize()){
+        currentLine = i;
+        cout << pAction(currentLine-1) << endl;
     }
 }
 
